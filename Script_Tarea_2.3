@@ -1,0 +1,23 @@
+##Este script baja 5 secuencias de Dioon sonorense de NCBI. Además, señala
+##cuántas veces existe la secuencia "TGCA" en cada una de las secuencias.
+#Karen Yoselin Jiménez Cedillo, 2020
+
+#Crear un directorio para guardar los datos
+mkdir "Dioon_sonorense"
+
+#Bajar datos de NCBI. Aquí se realizó un loop para descargar las 5 secuencias.
+#En la lista de "sec", de pusieron los códigos GI de NCBI de cada secuencias y
+#estos códigos fueron utilizandos para alimentar el comando "curl"
+
+for sec in 1574516344 1574516341 1574516338 1574516335 1574516331; do
+curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=$sec" > Dioon_sonorense/Dioon_sonorense$sec.fasta
+done
+
+#Revisar qué secuencias se bajaron
+grep -r ">" Dioon_sonorense
+
+#Contar la cantidad de veces que existe la secuencia "TGCA" en cada una de
+#las secuencias
+
+grep -rc "TGCA" Dioon_sonorense
+
