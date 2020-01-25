@@ -1,0 +1,29 @@
+---
+title: "Tarea_3.4"
+author: "Karen Yoselin Jiménez Cedillo"
+date: "25/1/2020"
+output: html_document
+---
+
+**Script para hacer un barplot con los datos "reads.txt"**
+
+```{r}
+#Limpiar el cerebro de R 
+rm(list=ls())
+```
+
+```{r}
+#Cargar el archivo y revisar si este ingreso correctamente
+reads <- read.delim("../data/reads.txt")
+head(reads)
+```
+
+```{r reads}
+#Hacer el barplot 
+barplot(reads$nreads, #Seleccionar que va estar en el eje x
+        names.arg = reads$sample, #Agregar el nombre de las muestras
+        main = "Número de lecturas por muestra y libreria", #Agregar título a la gráfica
+        xlab="Muestras", # Poner título a los ejes
+        ylab="Lecturas",
+        col = cm.colors(3)[reads$Library]) #Colorear las columnas por libreria
+```
